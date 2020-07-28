@@ -95,9 +95,14 @@ function moveBattleMenuSelection (direction: number) {
     cursor.y = selectedMenuItem.y
 }
 function healTeam () {
-    for (let value of sucromonTeam) {
-        statusbars.getStatusBarAttachedTo(StatusBarKind.Health, value).value += 99999
-    }
+    story.queueStoryPart(function () {
+        story.printDialog("WE REST AT HOME", 80, 90, 50, 150, 15, 1)
+    })
+    story.queueStoryPart(function () {
+        for (let value of sucromonTeam) {
+            statusbars.getStatusBarAttachedTo(StatusBarKind.Health, value).value += 99999
+        }
+    })
 }
 function show_switcher_menu () {
     changeScene("sucromon switcher")
@@ -499,7 +504,7 @@ function getSucromon (name: string) {
             . . . . . . . e e e b b b 4 4 4 e e e . . . . . . . . . . . . . 
             . . . . . . . . . . e e e e e e . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-            `, "DONUTSO", 15, 3)
+            `, "DONUTSO", 15, 4)
     } else if (name == "CONEY") {
         return createSucromon(img`
             . . . . . . . . . . . . 3 3 3 3 b b . . b b 3 3 3 3 3 . . . . . 
@@ -640,6 +645,41 @@ function getSucromon (name: string) {
             . . . . . . . . . . . . . . . . . . . . . . . . . . . . f f . . 
             . . . . . . . . . . . . . . . . . . . . . . . . . . . . . f f . 
             `, "ROLYPOL", 22, 6)
+    } else if (name == "GRIFLIME") {
+        return createSucromon(img`
+            . . . . . . . . . . . . 3 3 3 3 . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . 3 3 3 d d d 3 3 . . . . . . . . . . . . . . 
+            . . . . . . . . 6 6 6 3 d 1 1 1 1 3 3 . . 3 . . d . . . . . . . 
+            . . . . . . 6 6 5 5 5 3 1 1 1 1 1 1 3 3 3 3 3 . . . . . . . . . 
+            . . . . . 6 5 5 7 7 5 6 1 1 1 3 d 1 1 1 1 3 3 . . . . . . . . . 
+            . . . . 6 5 7 7 f d 7 6 1 1 1 d 3 d d 1 3 3 . . . . . . . . . . 
+            . . . 7 5 6 7 7 f 1 7 6 1 1 1 1 d 3 3 3 3 . . . . . . . . . . . 
+            . . 7 5 5 5 c 7 7 7 7 7 3 1 1 1 d d 3 . . . . . . . . . . . . . 
+            . 7 5 5 5 5 c 7 7 7 7 7 6 1 1 1 1 d 3 . . . . . . . . . . . . . 
+            . 6 6 6 c c c 7 7 7 7 7 c 6 3 1 1 d . . . . . . . . . . . . . . 
+            . . . . . c c 7 7 7 7 7 7 c 6 3 3 3 . . . . . . . . . . . . . . 
+            . . . . . . 6 7 7 7 7 7 7 7 c c c c c c c . . . . . . . . . c 6 
+            . . . . . . 6 7 7 7 7 7 7 7 7 7 c 6 6 6 6 c c c . . . c c 6 7 6 
+            . . . . . . 6 7 7 7 7 7 7 7 7 7 7 c c c 6 6 6 6 c c c 7 7 7 7 6 
+            . . . . . . 6 7 7 7 c 5 7 7 7 7 7 7 c c c c c c c c 7 7 7 7 6 . 
+            . . . . . 6 5 7 7 c 1 5 7 7 7 7 6 c 7 7 7 7 c c 7 7 7 7 7 7 6 . 
+            . . . . . 6 5 7 7 c 5 7 7 7 6 c 7 7 7 7 c c 7 7 7 7 7 7 6 6 . . 
+            . . . . . c 7 7 7 c 5 7 7 7 7 7 7 7 6 c 7 7 5 5 7 7 6 6 . . . . 
+            . . . . . c 7 7 c 1 1 5 7 7 7 7 6 c c 7 5 5 7 7 6 6 c c c . . . 
+            . . . . . c 7 7 c c 1 5 7 7 7 7 5 5 5 7 7 7 c c c c 7 c c . . . 
+            . . . . . c 7 7 7 c 1 1 5 5 5 5 1 7 7 c c c 6 6 6 7 7 c . . . . 
+            . . . . c 6 7 7 7 6 c c 1 1 1 c c c c 6 6 6 6 6 7 7 7 c c . . . 
+            . . . . c 6 c 7 7 7 6 6 c c c 6 6 6 6 6 6 6 7 7 7 7 7 c c . . . 
+            . . . c 6 6 c 7 7 7 7 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 c . . . 
+            . . . c c 6 c c 7 7 7 7 7 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 c . . 
+            . . . c c c c 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 c c c 7 5 7 7 c . 
+            . . . c c c 7 5 7 7 7 7 7 7 7 7 7 7 7 7 c c c c 6 c c 7 5 7 c . 
+            . . . . c 7 5 7 7 7 6 c c c c c c c c c . . c c c 6 c 6 7 5 6 . 
+            . . . . 6 5 7 7 7 6 c . . . . . . . . . . . . c c c . . 6 7 6 . 
+            . . . . 6 5 7 7 7 c . . . . . . . . . . . . . . c c . . . 6 7 . 
+            . . . . 6 5 7 c c . . . . . . . . . . . . . . . . . . . . . . . 
+            . . . . 7 6 6 . . . . . . . . . . . . . . . . . . . . . . . . . 
+            `, "GRIFLIME", 70, 3)
     } else {
         return createSucromon(img`
             . . . . . . . . . . . . . . b b b b b b b . . . . . . . . . . . 
@@ -677,6 +717,11 @@ function getSucromon (name: string) {
             `, "DONUTSO", 20, 5)
     }
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (scene2 == "overworld") {
+        show_switcher_menu()
+    }
+})
 function spriteWalk (sprite: Sprite, direction: number) {
     if (sprites.readDataBoolean(sprite, "walking")) {
         return
@@ -726,8 +771,10 @@ function spriteWalk (sprite: Sprite, direction: number) {
     if (sprite.tileKindAt(TileDirection.Center, myTiles.tile33)) {
         encounter = getRandomEncounter()
         if (encounter) {
-            startBattle(sucromonTeam[0], encounter)
+            startBattle(currentSucromon, encounter)
         }
+    } else if (sprite.tileKindAt(TileDirection.Center, myTiles.tile5)) {
+        healTeam()
     }
 }
 function checkBattleEnd () {
@@ -744,17 +791,12 @@ function checkBattleEnd () {
             story.queueStoryPart(function () {
                 story.printDialog("WE RUN AWAY CRYING", 80, 90, 50, 150, 15, 1)
             })
+            healTeam()
             story.queueStoryPart(function () {
                 openOverworld()
             })
             story.queueStoryPart(function () {
                 tiles.placeOnRandomTile(overworldPlayer, myTiles.tile5)
-            })
-            story.queueStoryPart(function () {
-                story.printDialog("WE REST AT HOME", 80, 90, 50, 150, 15, 1)
-            })
-            story.queueStoryPart(function () {
-                healTeam()
             })
         }
     } else if (statusbars.getStatusBarAttachedTo(StatusBarKind.Health, otherSucromon).value == 0) {
@@ -809,10 +851,14 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     } else if (scene2 == "sucromon switcher") {
         if (0 < statusbars.getStatusBarAttachedTo(StatusBarKind.Health, selected_sucromon_member).value) {
             setCurrentSucromon(selected_sucromon_member)
-            changeScene(lastScene)
-            createBattleMenu()
-            showOrHideSucromon(otherSucromon, false)
-            wildSucromonMove()
+            if (lastScene == "battle mode") {
+                changeScene(lastScene)
+                createBattleMenu()
+                showOrHideSucromon(otherSucromon, false)
+                wildSucromonMove()
+            } else if (lastScene == "overworld") {
+                openOverworld()
+            }
         } else {
             switcher_cursor.say(":(", 1000)
         }
@@ -1105,7 +1151,6 @@ let selected_sucromon_member: Sprite = null
 let encounter: Sprite = null
 let walkAnimationTime = 0
 let CatchSuccessful = false
-let currentSucromon: Sprite = null
 let otherSucromon: Sprite = null
 let sucrOrb: Sprite = null
 let lastScene = ""
@@ -1129,12 +1174,20 @@ let selectedMenuItem: TextSprite = null
 let scene2 = ""
 let battlePositionX = 0
 let battlePositionY = 0
+let currentSucromon: Sprite = null
 let cameraAnchor: Sprite = null
 let sucromonTeam: Sprite[] = []
 let text_list: string[] = []
 let animationTime = 0
 animationTime = 800
-text_list = ["DONUTSO", "CONEY", "CAKER", "HONEBADG", "ROLYPOL"]
+text_list = [
+"DONUTSO",
+"CONEY",
+"CAKER",
+"HONEBADG",
+"ROLYPOL",
+"GRIFLIME"
+]
 sucromonTeam = [getSucromon("DONUTSO"), getSucromon("CONEY")]
 cameraAnchor = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -1154,6 +1207,7 @@ cameraAnchor = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
+currentSucromon = sucromonTeam[0]
 battlePositionY = 20
 battlePositionX = 30
 openOverworld()
