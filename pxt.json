@@ -1,0 +1,35 @@
+{
+    "name": "SUCROMON - pt7",
+    "description": "",
+    "dependencies": {
+        "device": "*",
+        "arcade-text": "github:darzu/arcade-text#v1.0.0",
+        "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.2.9",
+        "story": "github:riknoll/arcade-story#v1.1.3",
+        "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.0.6",
+        "animation": "*",
+        "tilemaps": "github:microsoft/pxt-tilemaps#v1.8.1"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "tilemap.g.jres",
+        "tilemap.g.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "branch": "v1.0.10",
+        "tag": "v1.0.10",
+        "commits": "https://github.com/microsoft/pxt-arcade/commits/c86a729b0f12f0fc23df0138ead88339a4e7daa4",
+        "target": "1.0.14",
+        "pxt": "6.1.36",
+        "targetId": "arcade"
+    },
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "blocksprj"
+}
